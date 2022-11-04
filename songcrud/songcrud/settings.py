@@ -41,9 +41,6 @@ INSTALLED_APPS = [
     #Apps Created By Me
     'musicapp',
     'rest_framework',
-
-    #Local Apps
-    'api.apps.ApiConfig',
 ]
 
 

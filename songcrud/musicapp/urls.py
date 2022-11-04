@@ -15,4 +15,4 @@ urlpatterns = [
     }), name='song-detail')
 ]
 
-127.0.0:8000/api
+127.0.0:8000/

@@ -13,26 +13,26 @@ class SongViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Song.objects.all()
 
-        # to get a particukar id
+    # to get a particular id
     def get_object(self):
         id = self.kwargs.get('pk')
         song = get_object_or_404(Song, pk=id)
         return song
 
 
-        def update(self, request, *args, **kwargs):
-            song = self.get_object()
-            serializer = UpdateSongSerializer(instance=song, data=request.data, partial=True)
+    def update(self, request, *args, **kwargs):
+        song = self.get_object()
+        serializer = UpdateSongSerializer(instance=song, data=request.data, partial=True)
 
-            serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True)
 
-            song_instance = serializer.update(song, serializer.validated_data)
-            response_data = self.get_serializer(song_instance).data
-            return Response(response_data, status=status.HTTP_200_OK)
+        song_instance = serializer.update(song, serializer.validated_data)
+        response_data = self.get_serializer(song_instance).data
+        return Response(response_data, status=status.HTTP_200_OK)
 
 
-        def destroy(self,request, *args, **kwargs):
-            song = self.get_object()
-            song.delete()
-            deleted = f"{song} has been deleted"
-            return Response(deleted, status=status.HTTP_204_NO_CONTENT)
+    def destroy(self,request, *args, **kwargs):
+        song = self.get_object()
+        song.delete()
+        deleted = f"{song} has been deleted"
+        return Response(deleted, status=status.HTTP_204_NO_CONTENT)
